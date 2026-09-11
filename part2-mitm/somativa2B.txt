@@ -1,0 +1,61 @@
+ALICE
+
+python3 Alice.py
+Este cenário está usando MiTM, o cliente está falando com um servidor falso
+ESTA TELA PERTENCE A ALICE
+Aguardando solicitação de LOGIN ...
+RECEBI:  b'HELLO\nmaria'
+RECEBI:  b'CHALLENGE_RESPONSE\n7LvcpNNgB53rQBrrJvz1Fw==\n6a5388fae9e3680dc595c884142e108d'
+ALICE compara local_hash=6a5388fae9e3680dc595c884142e108d e prova_do_bob=6a5388fae9e3680dc595c884142e108d
+Este usuário é maria
+Aguardando solicitação de LOGIN ...
+RECEBI:  b'HELLO\nmaria'
+RECEBI:  b'CHALLENGE_RESPONSE\n7LvcpNNgB53rQBrrJvz1Fw==\n6a5388fae9e3680dc595c884142e108d'
+ALICE compara local_hash=2475cb546f28d2ab5509ef74552545f8 e prova_do_bob=6a5388fae9e3680dc595c884142e108d
+Ataque detectado: Pedido de LOGIN NEGADO!!!
+Aguardando solicitação de LOGIN ...
+
+BOB
+
+python3 Bob.py
+Este cenário está usando MiTM, o cliente está falando com um servidor falso
+digite seu LOGIN: maria
+digite sua SENHA: SenhaMaria2024
+RECEBI:  b'CHALLENGE\n8gvmY8O+wpVRTOqUYAm70A==\ng36f+5pUjcQtXKp6GSbM+A=='
+RECEBI:  b'SUCCESS\n3fbf968e33f6d977722ae286a51a7409'
+BOB compara local_hash=3fbf968e33f6d977722ae286a51a7409 e prova_da_Alice=3fbf968e33f6d977722ae286a51a7409
+Este servidor é ALICE
+Aguardando mensagens do Servidor
+RECEBI:  b'HMAC\nOla maria, voce esta autenticado na Alice\n2e65093526c12a78a40b7125594b94cc'
+Mensagem válida
+RECEBI:  b'HMAC\nOla maria, voce esta autenticado na Alice\n2e65093526c12a78a40b7125594b94cc'
+Mensagem válida
+RECEBI:  b'HMAC\nOla maria, voce esta autenticado na Alice\n2e65093526c12a78a40b7125594b94cc'
+Mensagem válida
+RECEBI:  b'HMAC\nOla maria, voce esta autenticado na Alice\n2e65093526c12a78a40b7125594b94cc'
+Mensagem válida
+
+CHARLES
+
+python3 Charles.py
+Este cenário está usando MiTM, o cliente está falando com um servidor falso
+ESTA TELA PERTENCE A CHARLES
+Iniciando escuta ...
+Descobri o Endereço de Bob ('127.0.0.1', 42572)
+ESCUTEI BOB:  ['HELLO', 'maria']
+Descobri o Endereço de Alice ('127.0.0.1', 9999)
+ESCUTEI ALICE:  ['CHALLENGE', '8gvmY8O+wpVRTOqUYAm70A==', 'g36f+5pUjcQtXKp6GSbM+A==']
+ESCUTEI BOB:  ['CHALLENGE_RESPONSE', '7LvcpNNgB53rQBrrJvz1Fw==', '6a5388fae9e3680dc595c884142e108d']
+ESCUTEI ALICE:  ['SUCCESS', '3fbf968e33f6d977722ae286a51a7409']
+ESCUTEI ALICE:  ['HMAC', 'Ola maria, voce esta autenticado na Alice', '2e65093526c12a78a40b7125594b94cc']
+Digite <ENTER> para fazer o REPLAY ATTACK
+Fazendo REPLAY ATTACK contra ALICE
+Enviei:  b'HELLO\nmaria'
+Recebi:  ['CHALLENGE', 'WANGJcqaGBgDdW0pqeSp7g==', 'g36f+5pUjcQtXKp6GSbM+A==']
+Enviei:  b'CHALLENGE_RESPONSE\n7LvcpNNgB53rQBrrJvz1Fw==\n6a5388fae9e3680dc595c884142e108d'
+Recebi:  ['FAILURE', 'SAI FORA, CHARLES ...']
+Aguardando a mensagem: 
+A autenticação falhou
+Tentando enviar uma mensagem duplicada para BOB ...
+b'HMAC\nOla maria, voce esta autenticado na Alice\n2e65093526c12a78a40b7125594b94cc'
+Iniciando escuta ...
