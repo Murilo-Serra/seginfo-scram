@@ -1,17 +1,15 @@
 # seginfo-scram
 
-Trabalho de Segurança da Informação na faculdade. A ideia era implementar autenticação no estilo SCRAM (desafio–resposta com salt) usando Python e sockets, sem framework — Alice é o servidor, Bob o cliente, e Charles é o atacante no meio pra estudar replay / MiTM.
+Trabalho de Segurança da Informação na faculdade. A ideia era implementar autenticação no estilo SCRAM (desafio–resposta com salt) usando Python e sockets, sem framework, Alice é o servidor, Bob o cliente, e Charles é o atacante no meio pra estudar replay / MiTM.
 
-Não use isso como referência de segurança “moderna” (tem MD5 de propósito didático). Serve pra mostrar o exercício e o raciocínio.
-
-Information Security coursework: a small SCRAM-style auth demo in plain Python sockets, plus a MiTM/replay scenario. Academic only — not how you'd ship auth today.
+Information Security coursework: a small SCRAM-style auth demo in plain Python sockets, plus a MiTM/replay scenario.
 
 ## Estrutura
 
 - `part1-auth/` — cadastro e login com salt + hash
 - `part2-mitm/` — versão com nonces / HMAC e MiTM ligado pra testar replay (tem um log de exemplo em `somativa2B.txt`)
 
-## Como rodar (part1)
+## Como rodar - Part 1
 
 Dois terminais, dentro de `part1-auth/`:
 
@@ -27,5 +25,3 @@ Se quiser o ataque, mexe em `ativar_MiTM` no `MyHashLib.py` e sobe o `Charles.py
 Copia o `senhas.json` que o part1 gerou pra pasta do part2 (ou cadastra de novo) e roda o mesmo esquema. No part2 o MiTM costuma já estar ativo no código.
 
 `senhas.json` fica fora do Git.
-
-Murilo Serra
